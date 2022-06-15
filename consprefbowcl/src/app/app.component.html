@@ -1,0 +1,22 @@
+
+
+<app-navbar></app-navbar>
+<div class="container col-12 col-md-11 col-lg-10 col-xl-9">
+  <div class="container col-12" *ngIf="isLoading" style="text-align-last: center; margin-top: 20px">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}"></p-progressSpinner>
+  </div>
+
+  <router-outlet *ngIf="!isLoading && !notOperator"></router-outlet>
+
+  <div style="display: flex; color: white; width: 100%; margin-top: 35px" *ngIf="!isLoading && notOperator">
+    <div style="min-height: 200px; background-color: rgb(167,41,50); padding: 40px 20px 20px;">
+      <fa-icon style="font-size: 60px" [icon]="timesCircle"></fa-icon>
+    </div>
+    <div style="min-height: 200px; font-size: 20px; font-weight: bold; background-color: rgba(255, 0, 0, 0.6); padding: 20px; width: 100%">
+      <p>
+        L'accesso a questo operatore non è consentito
+      </p>
+    </div>
+  </div>
+</div>
+

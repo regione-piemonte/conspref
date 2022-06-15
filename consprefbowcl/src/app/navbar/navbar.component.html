@@ -1,0 +1,46 @@
+<div id="barraTop1" style="background-color: #006cb4; padding-left: 15px; padding-right: 15px"
+     class="row justify-content-center">
+  <div class="col-12 col-md-11 col-lg-10 col-xl-9 nomePazienteBarra">
+    <div class="row" style="padding-top: 2px; color: #ffffff">
+      <div class="col" style="padding-left: 0px; padding-top: 5px;">
+        <a href="{{Pua}}" title="Punto unico di accesso " class="noLinkColor" target="_top" id="salute1"><img
+          class="img-fluid" > <strong>Punto unico di accesso</strong></a>
+
+
+      </div>
+      <div class="col" style="padding-right: 0px; padding-top: 5px;">
+        <a href="{{logoutSistemaPiemonte}}" title="Esci" class="noLinkColor" target="_top" id="salute1"><img
+          class="img-fluid" >Esci</a>
+      </div>
+      <div class="col-auto row" id="menuservizi"
+           style="padding-top: 5px; padding-left: 0px; padding-right: 0px; text-align: right;display: none;">
+        <div id="tuttiServizio" style="padding-right:5px">Tutti i servizi</div>
+        <div>
+          <i style="cursor: pointer; padding-right: 5px"
+             class="fa fa-navicon fa-lg" onclick="ApriServizi()"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showHomeStripe()" id="barraTop2" style="background-color: #0381d6; padding-left: 15px; padding-right: 15px"
+     class="row justify-content-center">
+  <div class="col-12 col-md-11 col-lg-10 col-xl-9 nomePazienteBarra">
+    <div class="row" style="padding-top: 2px; color: #ffffff">
+      <div class="col" style="padding-left: 0px; padding-top: 5px;">
+        <a [routerLink]="['/']" class="noLinkColor" target="_top" id="salute2">
+          <strong>Gestione consensi</strong>
+        </a>
+      </div>
+      <div class="col-auto row" id="menuservizi2"
+           style="padding-top: 5px; padding-left: 0px; padding-right: 0px; text-align: right;display: none;">
+        <div id="tuttiServizio2" style="padding-right:5px">Tutti i servizi</div>
+        <div>
+          <i style="cursor: pointer; padding-right: 5px"
+             class="fa fa-navicon fa-lg" onclick="ApriServizi()"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div style="width: 100%; display: flex; justify-content: center;">
+  <div style="max-width: 900px; width: 90%; display: flex; flex-direction: column">
+    <h3 style="margin-left: 15px; margin-top: 20px; margin-bottom: 30px">
+      <fa-icon (click)="back()" style="cursor: pointer; font-size: 20px; position: relative; bottom: 2px;"
+               [icon]="arrowLeft"></fa-icon>
+      <span style="margin-left: 5px">Dettaglio Consenso</span>
+    </h3>
+
+    <div style="display: flex; color: white; width: 100%; margin-bottom: 35px" *ngIf="feedbackInformativa && isOkResponse()">
+      <div style="min-height: 200px; background-color: rgba(30, 167, 62, 1); padding: 40px 20px 20px;">
+        <fa-icon style="font-size: 60px" [icon]="checkCircle"></fa-icon>
+      </div>
+      <div style="min-height: 200px; font-size: 20px; font-weight: bold; background-color: rgba(33, 186, 69, 1); padding: 20px; width: 100%">
+
+        <p>
+          Richiesta presa in carico correttamente.Se ha attivato le notifiche il cittadino riceverà conferma della corretta ricezione da parte delle aziende.
+        </p>
+      </div>
+    </div>
+
+    <div style="display: flex; color: white; width: 100%; margin-bottom: 35px" *ngIf="feedbackInformativa && !isOkResponse()">
+      <div style="min-height: 200px; background-color: rgb(167,41,50); padding: 40px 20px 20px;">
+        <fa-icon style="font-size: 60px" [icon]="timesCircle"></fa-icon>
+      </div>
+      <div style="min-height: 200px; font-size: 20px; font-weight: bold; background-color: rgba(255, 0, 0, 0.6); padding: 20px; width: 100%">
+        <p>
+          Il consenso nominato: {{feedbackInformativa.sotto_tipo_consenso.descrizione}} non è stato {{getStatusLabel()}} correttamente.
+
+          Azione effettuata in data: {{today | date: 'dd.MM.yyyy'}}<br><br>
+          Motivi:<br>
+          <span *ngFor="let error of response; let i = index">
+            {{i+1}}. <strong>{{error.codice}}</strong> - <span>{{error.descrizione}}</span><br>
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <button style="margin-bottom: 100px; max-width: 260px" class="btn btn-outline-primary" (click)="back()">
+      Torna alla home
+    </button>
+  </div>
+</div>

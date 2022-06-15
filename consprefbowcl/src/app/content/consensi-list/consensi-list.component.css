@@ -1,0 +1,16 @@
+.informativa {
+  margin-top: 10px; margin-right: 20px
+}
+
+.scaduto-informativa {
+  border-left: 10px solid #e93131
+}
+
+.attivo-informativa {
+  border-left: 10px solid green
+}
+
+.not-attivo-informativa {
+  border-left: 10px solid #666666
+}
+

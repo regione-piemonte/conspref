@@ -1,0 +1,68 @@
+<div class="modal beneficiario" style="height: fit-content; display: block;z-index: 99999;position: inherit;">
+  <div class="modal-dialog modal-lg" tabindex="-1" role="document">
+    <div class="modal-content rigabiancafontnero">
+      <div class="modal-header bordo-top" style="border: 0px">
+        <h4 class="modal-title">Risultato della ricerca</h4>
+        <button class="close" id="chiudimodalricerca" type="button"
+                data-dismiss="modal" aria-label="Close" (click)="dismiss()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="tabellaricerca"  *ngIf="!foundCitizens || foundCitizens.length === 0">
+        <div class="row" style="width: 100%; padding: 0 15px;">
+          <div class="bs-callout bs-callout-danger" style="width: 100%; padding: 15px; margin-top: 0; font-size: 12px">
+            La ricerca con il filtro fornito <strong>non</strong> ha prodotto risultati
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-outline-primary" style="float: right;margin: 15px;margin-top: 5px;"
+                data-dismiss="modal" (click)="dismiss()">indietro</button>
+      </div>
+
+
+      <div class="tabellaricerca" *ngIf="foundCitizens && foundCitizens.length > 0">
+        <div class="row" style="width: 100%; padding: 0 15px;">
+          <div class="bs-callout bs-callout-primary"
+               style="width: 100%; padding: 15px; margin-top: 0; font-size: 12px">
+            <strong>Sono stati trovati <label id="numtrovati"></label>
+              assistiti con le caratteristiche impostate.
+            </strong><br> Seleziona l'utente che intendi inserire nella richiesta
+          </div>
+        </div>
+
+        <div class="table-responsive" style="padding: 0 15px 15px;">
+
+          <table id="ricerca" class="table"
+                 style="font-size: 12px; border: 0;">
+            <thead class="rigagrigiafontnero" style="font-weight: bold">
+            <tr style="border: 0px">
+              <th scope="col" style="border: 0px">Codice Fiscale</th>
+              <th scope="col" style="border: 0px">Cognome</th>
+              <th scope="col" style="border: 0px">Nome</th>
+              <th scope="col" style="border: 0px">Sesso</th>
+              <th scope="col" style="border: 0px">Data di nascita</th>
+              <th scope="col" style="border: 0px">Comune o Stato estero
+                di nascita</th>
+              <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let citizen of foundCitizens; let i=index">
+              <th class="celleTab" scope="row">{{citizen.codice_fiscale}}</th>
+              <td class="celleTab">{{citizen.cognome}}</td>
+              <td class="celleTab">{{citizen.nome}}</td>
+              <td class="celleTab">{{citizen.sesso}}</td>
+              <td class="celleTab">{{citizen.data_nascita | date: 'dd.MM.yyyy'}}</td>
+              <td class="celleTab">{{citizen.comune_nascita}}</td>
+              <td class="celleTab">
+                <button type="button" class="btn btn-outline-primary"
+                        data-dismiss="modal" (click)="chooseCitizen(citizen)">Scegli</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

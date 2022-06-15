@@ -1,0 +1,89 @@
+<div style="padding: 15px; margin-top: 20px; margin-bottom: 30px;">
+  <div id="benPanel" class="tondo ombragenerale rigabiancafontnero"
+       style="padding: 15px;">
+
+    <div class="row" style="font-size: 12px">
+
+    </div>
+    <div class="row" style="padding-top: 8px">
+      <strong>Cerca il dichiarante tramite Codice Fiscale o
+        Cognome e nome dell'assistito.</strong>
+    </div>
+    <div class="row" style="margin-top: 15px; font-size: 12px">
+      <ul class="nav nav-tabs nav-Tabs-principales nav-justified"
+          style="width: 100%" role="tablist" id="prodTabsben">
+        <li (click)="clearData(true)" class="nav-item text-center rigagrigianobordo active"
+            role="presentation"><a role="tab" class="nav-link active" data-toggle="tab"
+                                   href="#codfiscben" style="border-radius: 0;">
+          <img class="img-fluid" src="assets/img/user/iconauomo.png"> <br>
+          <strong style="color: #1154a2;">Codice Fiscale</strong></a>
+        </li>
+        <li (click)="clearData(false)" class="nav-item text-center rigagrigianobordo" role="presentation"><a
+          role="tab" class="nav-link" data-toggle="tab"
+          href="#cognnomben" style="border-radius: 0;">
+          <img class="img-fluid" src="assets/img/user/iconauomo.png"><br>
+          <strong style="color: #1154a2;">Cognome e nome</strong></a></li>
+      </ul>
+      <div class="row" style="width: 100%">
+        <div class="tab-content"
+             style="width: 100%; background: white; margin-bottom: 15px">
+
+
+          <div class="tab-pane pt-4 active" id="codfiscben"
+               role="tabpanel" style="width: 100%; background: white">
+            <label class="control-label" for="codFiscaleben"> Codice fiscale</label>
+            <input class="form-control" type="text" style="height: 30px; text-transform: uppercase;" [(ngModel)]="searchOfCitizens.codiceFiscale"
+                   id="codFiscaleben" name="codFiscaleben">
+          </div>
+
+
+          <div id="cognnomben" class="tab-pane pt-4" role="tabpanel"
+               style="width: 100%; background: white">
+            <div class="row" style="padding-top: 5px">
+              <label class="control-label" for="cognomeben">Cognome</label>
+              <input type="text" class="form-control" id="cognomeben"
+              style="height: 30px;text-transform: uppercase;" name="cognomeben" [(ngModel)]="searchOfCitizens.cognome">
+            </div>
+
+            <div class="row" style="padding-top: 5px">
+              <label class="control-label" for="nome">Nome</label>
+              <input type="text" class="form-control"
+                     style="margin-bottom: 8px; height: 30px;text-transform: uppercase;" [(ngModel)]="searchOfCitizens.nome"
+                     id="nomeben" name="nomeben">
+            </div>
+
+            <div class="row" style="padding-top: 5px">
+              <label class="control-label" for="nome">Data di Nascita</label>
+            </div>
+            <input type="date" class="form-control d-sm-block d-md-none" style="width: 100%; height: 35px"
+                   [(ngModel)]="dataDiNascita" (ngModelChange)="datanasBen.value = $event">
+            <div class="row d-sm-none d-none d-md-block" style="width: 100%">
+              <div class="input-group input-append date"
+                   data-date-format="yyyy-mm-dd" data-provide="datepicker">
+                <span class="input-group-addon add-on"></span>
+                <input [ngModel]="dataDiNascita"
+                       type="date" class="form-control" name="datanasBen"
+                #datanasBen placeholder="gg/mm/aaaa"
+                style="border-right-width: 1px; padding-right: 12px;
+                background: url('assets/img/user/calendario.png') no-repeat right 10px center;">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="row"
+           style="width: 100%; bottom: 0; padding-bottom: 0;">
+        <div class="col-md-6"></div>
+        <div class="col-md-6"
+             style="padding-left: 0; padding-right: 0; display: flex; flex-direction: row-reverse">
+          <button [disabled]="inSearchInProgress || !canProceed" style="max-width: 150px" type="button" (click)="search()" class="btn btn-primary btn-block"
+          href="#" data-toggle="modal" data-target=".beneficiario">Cerca
+          </button>
+          <p-progressSpinner *ngIf="inSearchInProgress" [style]="{width: '35px', height: '35px', marginRight: '15px'}"></p-progressSpinner>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

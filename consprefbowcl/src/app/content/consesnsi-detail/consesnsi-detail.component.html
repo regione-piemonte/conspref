@@ -1,0 +1,129 @@
+<h3 style="margin-left: 15px; margin-top: 20px; margin-bottom: 30px">
+  <a [routerLink]="['../../']" style="color: black"><fa-icon style="cursor: pointer; font-size: 20px; position: relative; bottom: 2px;"
+              [icon]="arrowLeft"></fa-icon></a>
+  <span style="margin-left: 5px">Dettaglio Consenso</span>
+</h3>
+
+<div *ngIf="!citizen || !informativa || !informativa.consenso_list" class="row col-12 justify-content-center mt-5 mb-5">
+  <p-progressSpinner [style]="{width: '50px', height: '50px'}"></p-progressSpinner>
+</div>
+
+<div *ngIf="informativa && citizen && informativa.consenso_list"
+     style="width: 100%; padding: 5px; border: 1px #dbdbdb solid; background-color: white; margin-bottom: 20px">
+  <div class="row informativa"
+       [ngClass]="{'attivo-informativa': isActive(), 'scaduto-informativa': isExpired() || isRevoked()}">
+    <div style="width: calc(100% - 70px); margin-left: 10px;">
+      <strong>{{informativa.sotto_tipo_consenso.descrizione}}</strong>
+      <p>
+        {{informativa.desc_informativa}}
+      </p>
+    </div>
+    <div *ngIf="isActive()"
+         style="display: flex;flex-direction: column;align-items: center;position: relative;margin-left: auto;">
+      <fa-icon
+        style="color: #008000!important; font-size: 30px; font-family: 'Arial Normale', 'Arial'; font-weight: 400;"
+        [icon]="activeIcon"></fa-icon>
+      <span style="font-size: 13px; color: #666666; text-align: center; position: relative; bottom: 10px;">attivo</span>
+    </div>
+    <div *ngIf="isExpired()"
+         style="display: flex;flex-direction: column;align-items: center;position: relative;margin-left: auto;">
+      <fa-icon
+        style="color: #e93131!important; font-size: 30px; font-family: 'Arial Normale', 'Arial'; font-weight: 400;"
+        [icon]="expiredIcon"></fa-icon>
+      <span
+        style="font-size: 13px; color: #666666; text-align: center; position: relative; bottom: 10px;">scaduto</span>
+    </div>
+    <div *ngIf="isRevoked()"
+         style="display: flex;flex-direction: column;align-items: center;position: relative;margin-left: auto;">
+      <fa-icon
+        style="color: #e93131!important; font-size: 30px; font-family: 'Arial Normale', 'Arial'; font-weight: 400;"
+        [icon]="revokedIcon"></fa-icon>
+      <span
+        style="font-size: 13px; color: #666666; text-align: center; position: relative; bottom: 10px;">revocato</span>
+    </div>
+    <div *ngIf="isNotActive()"
+         style="display: flex;flex-direction: column;align-items: center;position: relative;margin-left: auto;">
+      <fa-icon
+        style="color: #999999!important; font-size: 30px; font-family: 'Arial Normale', 'Arial'; font-weight: 400;"
+        [icon]="notActiveIcon"></fa-icon>
+      <span
+        style="font-size: 13px; color: #666666; text-align: center; position: relative; bottom: 10px;">non attivo</span>
+    </div>
+  </div>
+  <div style="display: flex; min-height: 55px">
+
+    <div style="position: relative; margin-left: auto; margin-right: 20px;">
+   <span style="font-size: 13px; color: #666666; position:relative; top: 22px">
+      <span
+        *ngIf="informativa.data_decorrenza">Data inizio validità Informativa: {{informativa.data_decorrenza | date:'dd.MM.yyyy'}} </span>
+      <span *ngIf="informativa.data_scadenza">Data scadenza: {{informativa.data_scadenza | date:'dd.MM.yyyy'}} </span>
+    </span>
+    </div>
+  </div>
+  <hr>
+
+  <div *ngIf="informativa.tipo_consenso && informativa.tipo_consenso.codice==='R'" style="margin-left: 20px">
+    <span style="font-size: 12px;">Questo consenso ha validità a livello regionale verrà applicata la scelta per tutte le aziende sanitarie</span><br>
+    <label style="margin-right: 7px"><input type="radio" name="ragionaleCons" value="NO" [(ngModel)]="regionaleConsState"> Non acconsento</label>
+    <label style="margin-right: 7px"><input type="radio" name="ragionaleCons" value="SI" [(ngModel)]="regionaleConsState"> Acconsento</label>
+  </div>
+  <div *ngIf="informativa.tipo_consenso && informativa.tipo_consenso.codice==='A'" style="margin-left: 20px">
+    <strong>Elenco Aziende</strong><br>
+    <span
+      style="font-size: 12px;">Scegli per quali aziende vale il tuo consenso (almeno una azienda deve essere selezionata)</span><br>
+    <div class="my-3">
+      <button (click)="selectAll(true)" style="padding: 3px 10px; margin-right: 5px" class="btn btn-outline-success">Acconsento per tutte</button>
+      <button (click)="selectAll(false)" style="padding: 3px 10px; margin-right: 5px" class="btn btn-outline-danger">Nego per tutte</button>
+    </div>
+    <div style="display: flex">
+      <div class="row" style="font-size: 13px; width: 100%;" *ngIf="informativa.consenso_list">
+        <div *ngFor="let consensus of informativa.consenso_list; let i = index"
+             [ngClass]="{'col-6 col-sm-4 col-md-3': informativa.consenso_list.length > 3,
+               'mr-5':informativa.consenso_list.length <= 3}">
+          <p-triStateCheckbox name="{{consensus.tipo_asr.codice}}" [(ngModel)]="consensus.valore_consenso.codice" (onChange)="changeTipoStato($event, i)" label="{{consensus.tipo_asr.codice + ' ' + consensus.tipo_asr.descrizione}}"></p-triStateCheckbox>
+        </div>
+      </div>
+    </div>
+    <div style="font-size: 13px; margin-top: 10px;" class="row"></div>
+    <div style="font-size: 13px; margin-top: 10px;" class="row"></div>
+    <div style="font-size: 13px; margin-top: 10px;" class="row">
+    </div>
+  </div>
+  <hr>
+  <div style="margin-left: 20px">
+    <div style="margin-bottom: 40px">
+      <strong *ngIf="isActive()">Stato: <span style="color: green">ATTIVO <fa-icon
+        [icon]="activeIcon" style="margin-left: 10px; font-size: 20px"></fa-icon> </span>
+      </strong>
+      <strong *ngIf="isExpired()">Stato: <span style="color: #e93131">SCADUTO <fa-icon
+        [icon]="expiredIcon" style="margin-left: 10px; font-size: 20px"></fa-icon> </span>
+      </strong>
+      <strong *ngIf="isRevoked()">Stato: <span style="color: #e93131">REVOCATO <fa-icon
+        [icon]="revokedIcon" style="margin-left: 10px; font-size: 20px"></fa-icon> </span>
+      </strong>
+      <strong *ngIf="isNotActive()">Stato: <span style="color:#999999;">NON ATTIVO <fa-icon
+        [icon]="notActiveIcon" style="margin-left: 10px; font-size: 20px"></fa-icon> </span>
+      </strong>
+      <br><br>
+
+    </div>
+    <input type="checkbox" id="id-name--1" name="set-name"
+           class="switch-input" [(ngModel)]="agreed">
+    <label style="padding-left: 60px; background-color: #F2F2F2"
+           for="id-name--1" class="switch-label">
+      <span style="margin-right: 30px" class="toggle--on">Informativa letta, spiegata e consegnata</span>
+      <span style="margin-right: 30px" class="toggle--off">Informativa letta, spiegata e consegnata</span>
+    </label>
+    <p id="testoBlocco"></p>
+
+    <div style="width: 100%; display: flex;justify-content: space-between; padding-right: 40px; margin-bottom: 50px;">
+      <button [routerLink]="['../../']" style="width: 200px; height: 45px" class="btn btn-outline-primary">indietro</button>
+      <div style="display: flex">
+        <p-progressSpinner *ngIf="isSaving" [style]="{width: '40px', height: '40px'}"></p-progressSpinner>
+        <button [disabled]="!agreed || isSaving" (click)="save()" style="width: 200px; height: 45px; margin-left: 15px"
+                class="btn btn-primary">SALVA
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+<h2 class="mt-4" *ngIf="citizen">Lista consensi di {{citizen.nome+" "+citizen.cognome}}</h2>
+
+<div *ngIf="!citizen || !informativas || !finishedLoadingOfCitizen" class="row col-12 justify-content-center mt-5 mb-5">
+  <p-progressSpinner [style]="{width: '50px', height: '50px'}"></p-progressSpinner>
+</div>
+<div class="row" style="margin-top: 15px" *ngIf="citizen && informativas && finishedLoadingOfCitizen">
+  <p class="row col-12 pl-0">
+    <a style="font-size: 20px" (click)="isFilterOpened = !isFilterOpened" class="filter-label">
+      Filtra per
+      <fa-icon style="font-size: 18px" *ngIf="isFilterOpened" [icon]="chevronUp"></fa-icon>
+      <fa-icon style="font-size: 18px" *ngIf="!isFilterOpened" [icon]="chevronDown"></fa-icon>
+    </a>
+  </p>
+  <div [ngClass]="{'show': isFilterOpened}" class="collapse " style="margin-bottom: 10px; width: 100%;">
+    <div class="row px-0 mx-0">
+      <div class="form-group col-12 col-md-6 col-lg pl-0 ml-0">
+        <label for="Data">Data</label>
+        <select [(ngModel)]="selectedDateFilter" name="selectedDateFilter" (change)="filter()" class="form-control" id="Data">
+          <option selected value="Tutte">Tutte</option>
+          <option value="ultimoMese">Ultimo mese</option>
+          <option value="ultimi6Mesi">Ultimi 6 mesi</option>
+          <option value="ultimi5Anni">Ultimi 5 anni</option>
+        </select>
+      </div>
+      <div class="form-group col-12 col-md-6 col-lg pl-0 ml-0">
+        <label for="Stato">Stato</label>
+        <select [(ngModel)]="selectedStatoFilter" name="selectedStatoFilter" (change)="filter()" class="form-control" id="Stato">
+          <option value="Tutte">Tutte</option>
+          <option value="Attivi">Attivo</option>
+          <option value="NonAttivo">Non attivo</option>
+          <option value="Scaduti">Scaduto</option>
+          <option value="Revocato">Revocato</option>
+        </select>
+      </div>
+      <div class="form-group col-12 col-md-6 col-lg pl-0 ml-0">
+        <label for="Delegato">Delegato</label>
+        <select [(ngModel)]="selectedDelegatoFilter" name="selectedDelegatoFilter" (change)="filter()" class="form-control" id="Delegato">
+          <option value="Tutte">Tutti</option>
+          <option *ngFor="let delegato of deleganteList" value="{{delegato.fiscalCode}}">{{delegato.nome}} {{delegato.cognome}}</option>
+        </select>
+      </div>
+      <div class="form-group col-12 col-md-6 col-lg pl-0 ml-0">
+        <label for="Asl">Aziende</label>
+        <select [(ngModel)]="selectedAslFilter" name="selectedAslFilter" (change)="filter()" class="form-control" id="Asl">
+          <option value="Tutte">Tutte</option>
+          <option *ngFor="let asl of aslList" value="{{asl.codice}}">{{asl.codice}} - {{asl.descrizione}}</option>
+        </select>
+      </div>
+      <div class="form-group col-12 col-md-6 col-lg pl-0 ml-0">
+        <label for="Valido">Valido per</label>
+        <select class="form-control" id="Valido">
+          <option value="Tutte">Tutte</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div *ngIf="citizen && informativas && finishedLoadingOfCitizen && informativas.length === 0">
+  La ricerca con il filtro fornito non ha prodotto risultati.
+</div>
+<div style="margin-top: 15px"></div>
+<ng-container style="margin-top: 15px" *ngIf="citizen && informativas && finishedLoadingOfCitizen">
+  <div style="width: 100%; padding: 5px; border: 1px #dbdbdb solid; background-color: white; margin-bottom: 20px" *ngFor="let informativa of informativas">
+    <div class="row informativa"
+         [ngClass]="{'attivo-informativa': isActive(informativa),
+          'scaduto-informativa': isExpired(informativa) || isRevoked(informativa),
+          'not-attivo-informativa': isNotActive(informativa)}">
+      <div style="width: calc(100% - 70px); margin-left: 10px;">
+        <strong>{{informativa.sotto_tipo_consenso.descrizione}}</strong>
+        <p>
+          {{informativa.desc_informativa}}
+        </p>
+      </div>
+      <div *ngIf="isActive(informativa)" style="display: flex;flex-direction: column;align-items: center;position: relative;margin-left: auto;">
+        <fa-icon style="color: #008000!important; font-size: 30px; font-family: 'Arial Normale', 'Arial'; font-weight: 400;" [icon]="activeIcon"></fa-icon>
+        <span style="font-size: 13px; color: #666666; text-align: center; position: relative; bottom: 10px;">attivo</span>
+      </div>
+      <div *ngIf="isExpired(informativa)" style="display: flex;flex-direction: column;align-items: center;position: relative;margin-left: auto;">
+        <fa-icon style="color: #e93131!important; font-size: 30px; font-family: 'Arial Normale', 'Arial'; font-weight: 400;" [icon]="expiredIcon"></fa-icon>
+        <span style="font-size: 13px; color: #666666; text-align: center; position: relative; bottom: 10px;">scaduto</span>
+      </div>
+      <div *ngIf="isRevoked(informativa)" style="display: flex;flex-direction: column;align-items: center;position: relative;margin-left: auto;">
+        <fa-icon style="color: #e93131!important; font-size: 30px; font-family: 'Arial Normale', 'Arial'; font-weight: 400;" [icon]="revokedIcon"></fa-icon>
+        <span style="font-size: 13px; color: #666666; text-align: center; position: relative; bottom: 10px;">revocato</span>
+      </div>
+      <div *ngIf="isNotActive(informativa)" style="display: flex;flex-direction: column;align-items: center;position: relative;margin-left: auto;">
+        <fa-icon style="color: #666666!important; font-size: 30px; font-family: 'Arial Normale', 'Arial'; font-weight: 400;" [icon]="notActiveIcon"></fa-icon>
+        <span style="font-size: 13px; color: #666666; text-align: center; position: relative; bottom: 10px;">non attivo</span>
+      </div>
+    </div>
+    <div style="display: flex; min-height: 55px">
+
+      <div style="position: relative; margin-left: auto; margin-right: 20px;">
+    <span style="font-size: 13px; color: #666666; position:relative; top: 22px">
+      <span *ngIf="informativa.data_decorrenza">Data inizio validità Informativa: {{informativa.data_decorrenza | date:'dd.MM.yyyy'}} </span>
+      <span *ngIf="informativa.data_scadenza">Data scadenza: {{informativa.data_scadenza | date:'dd.MM.yyyy'}} </span>
+    </span>
+      </div>
+    </div>
+    <div style="display: flex; margin-top: 20px; margin-left: 20px; justify-content: space-between;">
+      <div style="display:flex;">
+      <span style="font-size: 13px; text-align: end;">
+        Visualizza e stampa<br>
+        consenso:
+       </span>
+        <a href="{{informativa.pdf_informativa}}" target="_blank">
+          <img style="width: 40px; margin-left: 10px;" id="u28_img" class="img " src="assets/img/user/u28.png">
+        </a>
+      </div>
+      <button (click)="openDetailPage(informativa.id_informativa)" class="btn btn-primary btn-block" style="width: 180px; margin-right: 20px; height: 35px; position: relative; top: 10px">
+      <span style="position: relative; bottom: 2px">
+        Gestisci
+      </span>
+      </button>
+    </div>
+  </div>
+</ng-container>
