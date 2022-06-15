@@ -1,0 +1,17 @@
+{
+"java8": false,
+"useBeanValidation": true,
+"hideGenerationTimestamp": true,
+"apiPackage": "it.csi.conspref.consprefboweb.business.consprefboweb",
+"modelPackage":  "it.csi.conspref.consprefboweb.dto.consprefboweb",
+"invokerPackage": "it.csi.conspref.consprefboweb.business.consprefboweb",
+"implFolder": "implfolder",
+"sourceFolder": "src/java",
+"useSwaggerFeature": false,
+"generateJbossDeploymentDescriptor": false,
+"generateImplArtifacts": false,
+"generateSwaggerMetadata": false,
+"attributeSerializationStrategy": "explicit-as-modeled", 
+"accessHttpHeaders": true,
+"modelPropertyNaming": "original"
+}

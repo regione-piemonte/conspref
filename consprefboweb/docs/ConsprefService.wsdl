@@ -1,0 +1,173 @@
+<wsdl:definitions name="ConsprefService" targetNamespace="http://consprefbe.csi.it/">
+<wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://consprefbe.csi.it/">
+<xs:import namespace="elencoErrori"/>
+<xs:import namespace="consenso"/>
+<xs:complexType name="revocaConsensoRichiesta">
+<xs:sequence>
+<xs:element name="requestId" type="xs:string"/>
+<xs:element name="codiceServizio" type="xs:string"/>
+<xs:element name="cfRichiedente" type="xs:string"/>
+<xs:element name="idAura" type="xs:string"/>
+<xs:element minOccurs="0" name="cfDelegato" type="xs:string"/>
+<xs:element minOccurs="0" name="operatore" type="tns:operatore"/>
+<xs:element name="fonte" type="tns:fonte"/>
+<xs:element name="dataAcquisizione" type="xs:string"/>
+<xs:element name="codiceTipoConsenso" type="xs:string"/>
+<xs:element name="codiceSottotipoConsenso" type="xs:string"/>
+<xs:element name="descrizioneSottotipoConsenso" type="xs:string"/>
+<xs:element name="elencoAsr">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="asr" type="tns:asr"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="operatore">
+<xs:sequence>
+<xs:element name="tipoOperatore" type="xs:string"/>
+<xs:element name="codiceOperatore" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="fonte">
+<xs:sequence>
+<xs:element name="codiceTipoFonte" type="xs:string"/>
+<xs:element name="codiceFonte" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="asr">
+<xs:sequence>
+<xs:element name="codice" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="revocaConsensoRicevuta">
+<xs:complexContent>
+<xs:extension base="tns:ricevuta">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="ricevuta">
+<xs:sequence>
+<xs:element minOccurs="0" name="esito" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="elencoErrori" nillable="true" type="tns:errore"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="errore">
+<xs:sequence>
+<xs:element minOccurs="0" name="errore" type="ns1:errore"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="acquisizioneConsensoRichiesta">
+<xs:sequence>
+<xs:element name="requestId" type="xs:string"/>
+<xs:element name="codiceServizio" type="xs:string"/>
+<xs:element name="cfRichiedente" type="xs:string"/>
+<xs:element name="idAura" type="xs:string"/>
+<xs:element minOccurs="0" name="cfDelegato" type="xs:string"/>
+<xs:element minOccurs="0" name="operatore" type="tns:operatore"/>
+<xs:element name="fonte" type="tns:fonte"/>
+<xs:element name="dataAcquisizione" type="xs:string"/>
+<xs:element name="codiceTipoConsenso" type="xs:string"/>
+<xs:element name="codiceSottotipoConsenso" type="xs:string"/>
+<xs:element name="descrizioneSottotipoConsenso" type="xs:string"/>
+<xs:element name="elencoConsensi">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="consenso" type="ns2:consenso"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="acquisizioneConsensoRicevuta">
+<xs:complexContent>
+<xs:extension base="tns:ricevuta">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:simpleType name="risultatoCodice">
+<xs:restriction base="xs:string">
+<xs:enumeration value="SUCCESSO"/>
+<xs:enumeration value="FALLIMENTO"/>
+<xs:enumeration value="BLOCCANTE"/>
+<xs:enumeration value="AVVISO"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="revocaConsensoRichiesta" nillable="true" type="tns:revocaConsensoRichiesta"/>
+<xs:element name="revocaConsensoRicevuta" nillable="true" type="tns:revocaConsensoRicevuta"/>
+<xs:element name="acquisizioneConsensoRichiesta" nillable="true" type="tns:acquisizioneConsensoRichiesta"/>
+<xs:element name="acquisizioneConsensoRicevuta" nillable="true" type="tns:acquisizioneConsensoRicevuta"/>
+</xs:schema>
+<xs:schema targetNamespace="elencoErrori" version="1.0">
+<xs:import namespace="http://consprefbe.csi.it/"/>
+<xs:complexType name="errore">
+<xs:sequence>
+<xs:element minOccurs="0" name="codEsito" type="xs:string"/>
+<xs:element minOccurs="0" name="esito" type="xs:string"/>
+<xs:element minOccurs="0" name="tipoErrore" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema targetNamespace="consenso" version="1.0">
+<xs:import namespace="http://consprefbe.csi.it/"/>
+<xs:complexType name="consenso">
+<xs:sequence>
+<xs:element name="valoreConsenso" type="xs:string"/>
+<xs:element minOccurs="0" name="asr" type="ns1:asr"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="revocaConsensoService">
+<wsdl:part element="tns:revocaConsensoRichiesta" name="revocaConsensoRichiesta"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="revocaConsensoServiceResponse">
+<wsdl:part element="tns:revocaConsensoRicevuta" name="revocaConsensoRicevuta"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="acquisizioneConsensoService">
+<wsdl:part element="tns:acquisizioneConsensoRichiesta" name="acquisizioneConsensoRichiesta"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="acquisizioneConsensoServiceResponse">
+<wsdl:part element="tns:acquisizioneConsensoRicevuta" name="acquisizioneConsensoRicevuta"> </wsdl:part>
+</wsdl:message>
+<wsdl:portType name="ConsprefService">
+<wsdl:operation name="revocaConsensoService">
+<wsdl:input message="tns:revocaConsensoService" name="revocaConsensoService"> </wsdl:input>
+<wsdl:output message="tns:revocaConsensoServiceResponse" name="revocaConsensoServiceResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="acquisizioneConsensoService">
+<wsdl:input message="tns:acquisizioneConsensoService" name="acquisizioneConsensoService"> </wsdl:input>
+<wsdl:output message="tns:acquisizioneConsensoServiceResponse" name="acquisizioneConsensoServiceResponse"> </wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="ConsprefServiceSoapBinding" type="tns:ConsprefService">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="revocaConsensoService">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="revocaConsensoService">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="revocaConsensoServiceResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="acquisizioneConsensoService">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="acquisizioneConsensoService">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="acquisizioneConsensoServiceResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="ConsprefService">
+<wsdl:port binding="tns:ConsprefServiceSoapBinding" name="ConsprefServiceImplPort">
+<soap:address location="http://xyz/consprefbe-web/ConsprefService"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
