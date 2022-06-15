@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="2.1" xmlns="http://java.sun.com/xml/ns/jaxb">
+  <!--
+
+Questo file è stato generato dall'architettura JavaTM per XML Binding (JAXB) Reference Implementation, v2.3.0 
+Vedere <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+Qualsiasi modifica a questo file andrà persa durante la ricompilazione dello schema di origine. 
+Generato il: 2019.06.25 alle 05:26:13 PM CEST 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="consensoCittadino">
+    <schemaBindings map="false">
+      <package name="it.csi.consprefnotifica.ws"/>
+    </schemaBindings>
+    <bindings scd="~tns:consenso">
+      <class ref="it.csi.consprefnotifica.ws.Consenso"/>
+    </bindings>
+  </bindings>
+  <bindings scd="x-schema::tns" xmlns:tns="http://conspref.csi.it/">
+    <schemaBindings map="false">
+      <package name="it.csi.consprefnotifica.ws"/>
+    </schemaBindings>
+    <bindings scd="tns:notificaRevocaConsensoRichiesta">
+      <class ref="it.csi.consprefnotifica.ws.NotificaRevocaConsensoRichiesta"/>
+    </bindings>
+    <bindings scd="~tns:operatore">
+      <class ref="it.csi.consprefnotifica.ws.Operatore"/>
+    </bindings>
+    <bindings scd="~tns:fonte">
+      <class ref="it.csi.consprefnotifica.ws.Fonte"/>
+    </bindings>
+    <bindings scd="~tns:asr">
+      <class ref="it.csi.consprefnotifica.ws.Asr"/>
+    </bindings>
+    <bindings scd="tns:notificaRevocaConsensoRicevuta">
+      <class ref="it.csi.consprefnotifica.ws.NotificaRevocaConsensoRicevuta"/>
+    </bindings>
+    <bindings scd="~tns:elencoErroriType">
+      <class ref="it.csi.consprefnotifica.ws.ElencoErroriType"/>
+    </bindings>
+    <bindings scd="tns:notificaAcquisizioneConsensoRichiesta">
+      <class ref="it.csi.consprefnotifica.ws.NotificaAcquisizioneConsensoRichiesta"/>
+    </bindings>
+    <bindings scd="tns:notificaAcquisizioneConsensoRicevuta">
+      <class ref="it.csi.consprefnotifica.ws.NotificaAcquisizioneConsensoRicevuta"/>
+    </bindings>
+    <bindings scd="tns:verificaServizio">
+      <class ref="it.csi.consprefnotifica.ws.VerificaServizio"/>
+    </bindings>
+    <bindings scd="tns:verificaServizioRicevuta">
+      <class ref="it.csi.consprefnotifica.ws.VerificaServizioRicevuta"/>
+    </bindings>
+    <bindings scd="~tns:revocaConsensoCittadino">
+      <class ref="it.csi.consprefnotifica.ws.RevocaConsensoCittadino"/>
+    </bindings>
+    <bindings scd="~tns:serviceRequest">
+      <class ref="it.csi.consprefnotifica.ws.ServiceRequest"/>
+    </bindings>
+    <bindings scd="~tns:codifica">
+      <class ref="it.csi.consprefnotifica.ws.Codifica"/>
+    </bindings>
+    <bindings scd="~tns:entita">
+      <class ref="it.csi.consprefnotifica.ws.Entita"/>
+    </bindings>
+    <bindings scd="~tns:tipoFonte">
+      <class ref="it.csi.consprefnotifica.ws.TipoFonte"/>
+    </bindings>
+    <bindings scd="~tns:ruoloOperazione">
+      <class ref="it.csi.consprefnotifica.ws.RuoloOperazione"/>
+    </bindings>
+    <bindings scd="~tns:tipoStato">
+      <class ref="it.csi.consprefnotifica.ws.TipoStato"/>
+    </bindings>
+    <bindings scd="~tns:informativa">
+      <class ref="it.csi.consprefnotifica.ws.Informativa"/>
+    </bindings>
+    <bindings scd="~tns:tipoConsenso">
+      <class ref="it.csi.consprefnotifica.ws.TipoConsenso"/>
+    </bindings>
+    <bindings scd="~tns:sottoTipoConsenso">
+      <class ref="it.csi.consprefnotifica.ws.SottoTipoConsenso"/>
+    </bindings>
+    <bindings scd="~tns:consInformativa">
+      <class ref="it.csi.consprefnotifica.ws.ConsInformativa"/>
+    </bindings>
+    <bindings scd="~tns:tipoASR">
+      <class ref="it.csi.consprefnotifica.ws.TipoASR"/>
+    </bindings>
+    <bindings scd="~tns:valoreConsenso">
+      <class ref="it.csi.consprefnotifica.ws.ValoreConsenso"/>
+    </bindings>
+    <bindings scd="~tns:richiedente">
+      <class ref="it.csi.consprefnotifica.ws.Richiedente"/>
+    </bindings>
+    <bindings scd="~tns:applicazioneRichiedente">
+      <class ref="it.csi.consprefnotifica.ws.ApplicazioneRichiedente"/>
+    </bindings>
+    <bindings scd="~tns:applicazione">
+      <class ref="it.csi.consprefnotifica.ws.Applicazione"/>
+    </bindings>
+    <bindings scd="~tns:serviceResponse">
+      <class ref="it.csi.consprefnotifica.ws.ServiceResponse"/>
+    </bindings>
+    <bindings scd="~tns:ricevuta">
+      <class ref="it.csi.consprefnotifica.ws.Ricevuta"/>
+    </bindings>
+    <bindings scd="~tns:errore">
+      <class ref="it.csi.consprefnotifica.ws.Errore"/>
+    </bindings>
+    <bindings scd="~tns:risultatoCodice">
+      <typesafeEnumClass ref="it.csi.consprefnotifica.ws.RisultatoCodice"/>
+    </bindings>
+  </bindings>
+  <bindings scd="x-schema::tns" xmlns:tns="fonteCittadino">
+    <schemaBindings map="false">
+      <package name="it.csi.consprefnotifica.ws"/>
+    </schemaBindings>
+    <bindings scd="~tns:fonte">
+      <class ref="it.csi.consprefnotifica.ws.$$$garbage$$$0"/>
+    </bindings>
+  </bindings>
+  <bindings scd="x-schema::tns" xmlns:tns="erroreCittadino">
+    <schemaBindings map="false">
+      <package name="it.csi.consprefnotifica.ws"/>
+    </schemaBindings>
+    <bindings scd="~tns:errore">
+      <class ref="it.csi.consprefnotifica.ws.$$$garbage$$$1"/>
+    </bindings>
+  </bindings>
+</bindings>
+
