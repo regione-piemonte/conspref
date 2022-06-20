@@ -29,7 +29,7 @@ tomcat-embed-websocket-9.0.21.jar,"Apache-2.0",-,-,-,Java,-,-,-
 xmlsec-1.5.8.jar,"Apache-2.0",-,-,-,Java,-,-,-
 wss4j-1.6.19.jar,"Apache-2.0",-,-,-,Java,-,-,-
 activation-1.0.2.jar,"CDDL-1.0",-,-,-,Java,-,-,-
-consprefNotifica-1.4.0.jar,"Apache-2.0";"MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
+consprefNotifica-1.4.0.jar,"Apache-2.0;MIT (Rilasciata da CSI Piemonte su richiesta)",CSI-Piemonte,-,-,Java,-,-,-
 classmate-1.4.0.jar,"Apache-2.0",Redhat,-,-,Java,-,-,-
 httpclient-4.4.jar,"Apache-2.0",Redhat,-,-,Java,-,-,-
 httpcore-4.4.jar,"Apache-2.0",Redhat,-,-,Java,-,-,-
