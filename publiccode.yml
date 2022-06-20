@@ -1,0 +1,126 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+applicationSuite: Regione Piemonte Sistema Informativo Lavoro
+categories:
+  - erp
+dependsOn:
+  proprietary:
+    - name: Apache httpd
+      optional: false
+      version: 2.4.53
+      versionMax: ''
+      versionMin: ''
+    - name: PostgreSQL
+      optional: false
+      version: 9.6.10
+      versionMax: ''
+      versionMin: ''
+    - name: RedHat JBoss EAP
+      optional: false
+      version: 6.4.5
+      versionMax: ''
+      versionMin: ''
+description:
+  it:
+    features:
+      - |-
+        Le API esposte da CONSPREF facilitano la fruibilità dei servizi sanitari
+
+        al cittadino.
+    genericName: Consensi
+    localisedName: Consensi
+    longDescription: |
+      Il servizio CONSPREF consente di gestire la volonta con cui un soggetto
+      accetta o rifiuta di essere sottoposto ad un trattamento
+
+
+      nonché di essere informato sulla sua condizione clinica e sugli interventi
+      diagnostico terapeutici praticabili.
+
+
+      Il cittadino tramite il prodotto APISAN e relativa autenticazione, o
+      presso gli sportelli delle ASL, o presso le farmacie può
+
+
+      utilizzare il servizio per gestire l'attivazione/riattivazione, o la
+      revoca, o la consultazione,  o il rilascio della documentazione di:
+
+
+      consenso alla stratificazione dei dati sanitari ai fini della medicina di
+      iniziativa;
+
+
+      consenso alla presa in carico per in programmi di gestione cronicità/
+      disease management;
+
+
+      consenso alla presa in carico in programmi/servizi di telemedicina;
+
+
+      consenso alla presa in carico ad una Rete di patologia, ad esempio quella
+      oncologica;
+
+
+      consenso informato progressivo nelle cure palliative;
+
+
+      partecipazione a uno studio sperimentale.
+
+
+      Il servizio CONSPREF invia inoltre notifiche via sms e mail al cittadino.
+
+
+      Il servizio CONSPREF è formato anche da un back office acceduto da
+      operatori regionali per lo svolgimento del monitoraggio 
+
+
+      e delle operazioni già descritte.
+    shortDescription: Servizi di gestione consensi e preferenze su servizi della Regione.
+developmentStatus: stable
+intendedAudience:
+  countries:
+    - it
+  scope:
+    - healthcare
+it:
+  conforme:
+    gdpr: true
+    lineeGuidaDesign: true
+    misureMinimeSicurezza: false
+    modelloInteroperabilita: true
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: false
+    spid: false
+  riuso:
+    codiceIPA: r_piemon
+landingURL: 'https://github.com/regione-piemonte/conspref.git'
+legal:
+  authorsFile: |-
+    https://raw.githubusercontent.com/regione-piemonte/conspref/master/COPYRIGHTS.md
+  license: EUPL-1.2
+  mainCopyrightOwner: Regione PIemonte
+  repoOwner: Regione PIemonte
+localisation:
+  availableLanguages:
+    - it
+  localisationReady: false
+maintenance:
+  contacts:
+    - email: maurizio.chiappo@csi.it
+      name: Maurizio Chiappo
+  type: internal
+name: Consensi
+platforms:
+  - web
+releaseDate: '2022-06-16'
+softwareType: standalone/backend
+softwareVersion: 1.0.0
+url: 'https://github.com/regione-piemonte/conspref.git'
+usedBy:
+  - Regione PIemonte
